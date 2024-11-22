@@ -1,4 +1,4 @@
-name: "Build Godot"
+name: "Build Godot Games"
 description: "Build a Godot project for multiple platforms"
 author: josephbmanley
 inputs:
@@ -9,7 +9,7 @@ inputs:
     description: 'Name of the preset in `export_presets.cfg` to use'
     required: true
   subdirectory:
-    description: 'Optional name of the subdirectory to put exported project in'
+    description: 'This has been removed, please do not use.'
     default: ""
   package:
     description: 'Set true to output an artifact zip file'
