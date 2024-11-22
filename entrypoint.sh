@@ -8,7 +8,8 @@ cp -a /root/.local/share/godot/export_templates/. ~/.local/share/godot/export_te
 
 if [ "$3" != "" ]
 then
-    SubDirectoryLocation="$3/"
+    echo "SubDirectories are no longer supported."
+    exit 1
 fi
 
 mode="export-release"
@@ -20,20 +21,25 @@ fi
 
 # Export for project
 echo "Building $1 for $2"
-mkdir -p $GITHUB_WORKSPACE/build/${SubDirectoryLocation:-""}
 cd "$GITHUB_WORKSPACE/$5"
-godot --headless --${mode} "$2" $GITHUB_WORKSPACE/build/${SubDirectoryLocation:-""}$1
+godot ./project.godot --headless --${mode} "$2"
 echo "Build Done"
 
-echo build=build/${SubDirectoryLocation:-""} >> $GITHUB_OUTPUT
+if [ "$5" != "" ]
+then
+    BUILD_PATH="$GITHUB_WORKSPACE/$5/build/"
+else
+    BUILD_PATH="$GITHUB_WORKSPACE/build/"
+fi
+echo build=$BUILD_PATH >> $GITHUB_OUTPUT
 
 
 if [ "$4" = "true" ]
 then
     echo "Packing Build"
     mkdir -p $GITHUB_WORKSPACE/package
-    cd $GITHUB_WORKSPACE/build
-    zip $GITHUB_WORKSPACE/package/artifact.zip ${SubDirectoryLocation:-"."} -r
+    cd $BUILD_PATH
+    zip $GITHUB_WORKSPACE/package/artifact.zip . -r
     echo artifact=package/artifact.zip >> $GITHUB_OUTPUT
     echo "Done"
 fi
