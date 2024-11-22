@@ -1,13 +1,13 @@
-![Release Version](https://img.shields.io/github/v/release/josephbmanley/build-godot-action) ![Test Action](https://github.com/josephbmanley/build-godot-action/workflows/Test%20Action/badge.svg)
+![Release Version](https://img.shields.io/github/v/release/felix-schindler/build-godot-action)
 
 ![Build Godot Project](logo.png)
 
 This action builds the godot project in your `$GITHUB_WORKSPACE`, so that you can easily automate builds.
 
 Table of Contents:
-- [Quickstart](#Quickstart)
-- [Usage](#Usage)
-- [Contributors](Contributors.md)
+
+- [Quickstart](#quickstart)
+- [Usage](#usage)
 
 ## Quickstart
 
@@ -42,7 +42,7 @@ jobs:
           lfs: true
       - name: Build
         id: build
-        uses: manleydev/build-godot-action@v1.4.1
+        uses: felix-schindler/build-godot-action@v2.0.0
         with:
           name: example
           preset: ${{ matrix.platform }}
@@ -60,6 +60,7 @@ This workflow has three steps:
 - **Checkout**: The Checkout step clones the project on the GitHub actions runner.
 - **Build**: This step uses this action to build the Godot project.
 - **Upload Artifact**: The Upload Artifact step uploads the output from the build step.
+  > You could also use something like [softprops/action-gh-release](https://github.com/softprops/action-gh-release) to create automated releases of your game, instead of just uploading it as a artifact.
 
 **Matrix Explaination**: The matrix object runs the job for EACH possible value. So in this job, we are using a `platform` matrix to automatically run our workflow for the values `linux`, `windows`, and `mac`.
 
@@ -82,7 +83,7 @@ Additionally if you are not using a matrix, you can set the export preset as the
 ```yaml
       - name: Build
         id: build
-        uses: manleydev/build-godot-action@v1.4.1
+        uses: felix-schindler/build-godot-action@v2.0.0
         with:
           name: example
           preset: win32
@@ -95,7 +96,7 @@ To change the export name, you can the `name` parameter to whatever you want you
 ```yaml
       - name: Build
         id: build
-        uses: manleydev/build-godot-action@v1.4.1
+        uses: felix-schindler/build-godot-action@v2.0.0
         with:
           name: test # This project will export with the name "test"
 ```
@@ -107,7 +108,7 @@ This example is set to build with debug mode enable. To disable debug, either se
 ```yaml
       - name: Build
         id: build
-        uses: manleydev/build-godot-action@v1.4.1
+        uses: felix-schindler/build-godot-action@v2.0.0
         with:
           name: example
           preset: ${{ matrix.platform }}
@@ -121,7 +122,7 @@ If your project is located in a subdirectory, you can use the `projectDir` to ch
 ```yaml
       - name: Build
         id: build
-        uses: manleydev/build-godot-action@v1.4.1
+        uses: felix-schindler/build-godot-action@v2.0.0
         with:
           name: example
           preset: ${{ matrix.platform }}
@@ -142,7 +143,7 @@ Example:
 
 ```yaml
 steps:
-- uses: manleydev/build-godot-action@[VERSION]
+- uses: felix-schindler/build-godot-action@[VERSION]
   with:
     name: godot-project
     preset: HTML5
@@ -157,12 +158,6 @@ steps:
 #### preset **required**
 
     The name of the preset found in `export_presets.cfg` you would like to build.
-
-#### subdirectory
-
-    *Optional*
-
-    The subdirectory in the `build` folder to output build to, can be useful for self packaging.
 
 #### package
 
