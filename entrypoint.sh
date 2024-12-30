@@ -31,15 +31,15 @@ then
 else
     BUILD_PATH="$GITHUB_WORKSPACE/build/"
 fi
-echo build=$BUILD_PATH >> $GITHUB_OUTPUT
+echo build="$BUILD_PATH" >> "$GITHUB_OUTPUT"
 
 
 if [ "$4" = "true" ]
 then
     echo "Packing Build"
-    mkdir -p $GITHUB_WORKSPACE/package
-    cd $BUILD_PATH
-    zip $GITHUB_WORKSPACE/package/artifact.zip . -r
-    echo artifact=package/artifact.zip >> $GITHUB_OUTPUT
+    mkdir -p "$GITHUB_WORKSPACE"/package
+    cd "$BUILD_PATH"
+    zip "$GITHUB_WORKSPACE"/package/artifact.zip . -r
+    echo artifact=package/artifact.zip >> "$GITHUB_OUTPUT"
     echo "Done"
 fi
