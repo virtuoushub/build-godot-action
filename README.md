@@ -1,4 +1,4 @@
-![Release Version](https://img.shields.io/github/v/release/felix-schindler/build-godot-action)
+<!-- ![Release Version](https://img.shields.io/github/v/release/virtuoushub/build-godot-action) -->
 
 ![Build Godot Project](logo.png)
 
