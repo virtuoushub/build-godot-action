@@ -1,6 +1,6 @@
 name: "Build Godot Games"
 description: "Build a Godot project for multiple platforms"
-author: josephbmanley
+author: virtuoushub
 inputs:
   name:
     description: 'Name of the exported binary'
